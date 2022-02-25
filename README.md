@@ -20,7 +20,7 @@ El proyecto frontend requiere trabajar con NodeJS version 16.13 https://nodejs.o
 
 1. Ir a la carpeta de su proyecto backend: `cd backend`
 2. Instalar las dependencias del proyecto: `composer install`
-3. Crear una base de datos en su servidor para poder usarse con la app
+3. Configurar la app para conectarse con el servidor de MySQL corriendo en docker
 4. Crear un nuevo archivo .env: `cp .env.example .env`
 5. Agregar sus propias credenciales de base de datos en el archivo .env en DB_DATABASE, DB_USERNAME, DB_PASSWORD
 6. Generar la clave de la aplicación: `php artisan key:generate`
