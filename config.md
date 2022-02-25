@@ -4,9 +4,18 @@ Configuración del examen practico.
 
 ## Prerequisitos
 
-El proyecto backend requiere trabajar con un entorno local Apache/Ngnix y con PHP, Composer y MySQL
+El proyecto backend requiere trabajar con un entorno de MySQL
 
-El proyecto frontent requiere traajar con NodeJS version 16.13, npm o yarn, React
+### MySQL
+
+1. Descargar e instalar docker, se puede encontrar aquí https://docs.docker.com/engine/install/
+2. Ejecutar este comando en la raíz del repositorio: `docker run --name mysql-examen -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=examen -v $(pwd)/mysqldatadir:/var/lib/mysql -v $(pwd)/db:/docker-entrypoint-initdb.d --platform linux/x86_64 --expose 3306 -d mysql:latest`
+3. Quedará configurada una base de datos que se llama *examen* y los datos de conexión son host `localhost`, usuario `root`, contraseña `root` y puerto `3306`
+
+El proyecto frontent requiere de Composer para instalar Laravel
+El proyecto frontent requiere trabajar con NodeJS version 16.13, npm o yarn, React
+
+
 
 
 ## Instalacion del proyecto backend
