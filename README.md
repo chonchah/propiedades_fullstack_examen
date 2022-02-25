@@ -9,8 +9,8 @@ El proyecto backend requiere trabajar con un entorno de MySQL
 ### MySQL
 
 1. Descargar e instalar docker, se puede encontrar aquí https://docs.docker.com/engine/install/
-2. Ejecutar este comando en la raíz del repositorio: `docker run --name mysql-examen -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=examen -v $(pwd)/mysqldatadir:/var/lib/mysql -v $(pwd)/db:/docker-entrypoint-initdb.d --platform linux/x86_64 --expose 3306 -d mysql:latest`
-3. Quedará configurada una base de datos que se llama *examen* y los datos de conexión son host `localhost`, usuario `root`, contraseña `root` y puerto `3306`
+2. Ejecutar este comando en la raíz del repositorio: `docker run --name mysql-examen -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=examen -e MYSQL_PASSWORD=examen -e MYSQL_DATABASE=examen -v $(pwd)/mysqldatadir:/var/lib/mysql -v $(pwd)/db:/docker-entrypoint-initdb.d --platform linux/x86_64 -p 3306:3306 -d mysql:latest`
+3. Quedará configurada una base de datos que se llama *examen* y los datos de conexión son host `localhost`, usuario `examen`, contraseña `examen` y puerto `3306`
 
 El proyecto backend requiere de Composer https://getcomposer.org/download/  
 El proyecto frontend requiere trabajar con NodeJS version 16.13 https://nodejs.org/en/ y yarn https://classic.yarnpkg.com/lang/en/docs/install
