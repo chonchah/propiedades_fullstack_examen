@@ -15,5 +15,5 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-
 Route::get('properties', 'App\Http\Controllers\PropertyController@index');
+Route::get('properties/{property}', 'App\Http\Controllers\PropertyController@show');

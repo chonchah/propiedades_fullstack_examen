@@ -20,4 +20,7 @@ class PropertyController extends Controller
         $propeties = Property::all();
         return view('properties',compact('propeties'));
     }
+    public function show(Property $property){
+        return $property;
+    }
 }
