@@ -12,14 +12,13 @@ class PropertyController extends Controller
 {
     public function index()
     {
-        $propeties = Property::all();
-
-        return $propeties;
+        $properties = Property::with('amenities', 'images')->get();
+        return $properties;
     }
     public function mvcProperties()
     {
-        $properties = Property::with('amenities', 'images')->get();
-        return $properties;
+        $propeties = Property::all();
+        return view('properties', compact('propeties'));
     }
     public function show(Property $property)
     {

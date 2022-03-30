@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Col, Row, Container } from "react-bootstrap";
 import NavigationBar from "../Components/Navbar";
 import { connect } from "react-redux";
-
+import PropertyCard from "../Components/PropertyCard";
 import store from "../redux/store";
 import { getAllProperties } from "../redux/actionCreators";
 
@@ -24,11 +24,7 @@ const HomePage = ({ properties }) => {
               <Row md={3} sm={2} xs={1}>
                 {properties.map((property) => (
                   <Col key={property.id}>
-                    {property.name}
-                    {property.neighborhood} 
-                    {property.city}, CP {property.cp}
-                    {" "}
-            {property.state}
+                    <PropertyCard property={property}/>
                   </Col>
                 ))}
               </Row>
