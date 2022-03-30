@@ -32,4 +32,12 @@ class Property extends Model
         'public_key',
         'user',
     ];
+    public function amenities()
+    {
+        return $this->hasManyThrough(Amenities::class, PropertyAmenities::class, 'property_id', 'id', 'id', 'amenity_id');
+    }
+    public function images()
+    {
+        return $this->hasMany(PropertyImages::class, 'property', 'id');
+    }
 }
