@@ -1,9 +1,10 @@
 import React from "react";
-import { Card, Carousel, CarouselItem, ListGroup } from "react-bootstrap";
+import { Card, Carousel, CarouselItem } from "react-bootstrap";
 
-const PropertyCard = ({property})=>{
+const PropertyCard = ({property, verInfo})=>{
+    const handleClick=()=>{verInfo(property)}
     return (
-        <Card>
+        <Card onClick={handleClick}>
             <Card.Body>
                 <Carousel>
                     {property.images?property.images.map(image=>{
