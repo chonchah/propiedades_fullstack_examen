@@ -17,8 +17,8 @@ class PropertyController extends Controller
     }
     public function mvcProperties()
     {
-        $propeties = Property::all();
-        return view('properties', compact('propeties'));
+        $properties = Property::with('amenities', 'images')->get();
+        return $properties; 
     }
     public function show(Property $property)
     {
