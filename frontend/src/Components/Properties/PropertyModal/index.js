@@ -3,12 +3,9 @@ import { useState } from "react"
 import { Button, Modal, Tabs, Tab, Badge, Card, Row, Col, Carousel, CarouselItem } from "react-bootstrap"
 
 
-
 const PropertyModal = ({ property, handleClose }) => {
     const [show] = useState(property ? true : false)
-    useEffect(() => {
 
-    })
     return (
         <>
             <Modal fullscreen={true} show={show} onHide={handleClose}>
@@ -57,7 +54,7 @@ const PropertyModal = ({ property, handleClose }) => {
                         <Card.Body>
                             <Card.Title>Ubicación</Card.Title>
                             <Card.Text>Calle: {property.street} C.P. {property.cp}, {property.city}, {property.state} </Card.Text>
-                            <div id="mapa"></div>
+
                         </Card.Body>
                     </Card>
                 </Modal.Body>

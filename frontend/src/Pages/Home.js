@@ -7,18 +7,19 @@ import store from "../redux/store";
 import { getAllProperties } from "../redux/actionCreators";
 import PropertyModal from "../Components/Properties/PropertyModal";
 import { useState } from "react";
+import Mapa from "../Components/Mapa/SimpleMap";
 
 const HomePage = ({ properties }) => {
-  
+
   const [property, setProperty] = useState(undefined)
-  
-  const showModal = (property)=>{
-    setProperty(property)    
+
+  const showModal = (property) => {
+    setProperty(property)
   }
-  const closeModal = ()=>{
+  const closeModal = () => {
     setProperty(undefined)
   }
-  
+
   useEffect(() => {
     store.dispatch(getAllProperties());
   }, []);
@@ -28,21 +29,21 @@ const HomePage = ({ properties }) => {
       <NavigationBar />
       <Container>
         <div>
-          {property?<PropertyModal property={property} handleClose={closeModal} />:<></>}
+          {property ? <PropertyModal property={property} handleClose={closeModal} /> : <></>}
           <div>
-            <span>Mapa...</span>
+            <Mapa properties={properties} />
           </div>
           <Container>
             {properties ? (
               <Row md={3} sm={2} xs={1}>
                 {properties.map((property) => (
                   <Col key={property.id}>
-                    <PropertyCard property={property} verInfo={showModal}/>
+                    <PropertyCard property={property} verInfo={showModal} />
                   </Col>
                 ))}
               </Row>
             ) : (
-             <></>
+              <></>
             )}
           </Container>
         </div>
