@@ -15,5 +15,6 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+Route::get('amenities', 'App\Http\Controllers\AmenityController@index');
 Route::get('properties', 'App\Http\Controllers\PropertyController@index');
 Route::get('properties/{property}', 'App\Http\Controllers\PropertyController@show');
