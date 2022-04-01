@@ -1,1 +1,2 @@
 export const GET_ALL_PROPERTIES = "GET_ALL_PROPERTIES"
+export const GET_ALL_IMAGES = "GET_IMAGES"
