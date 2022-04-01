@@ -27,13 +27,12 @@ const HomePage = ({ properties }) => {
   return (
     <div>
       <NavigationBar />
+      {(property?<PropertyModal property={property} handleClose={closeModal} />:<></>)}
       <Container>
-        <div>
-          {property ? <PropertyModal property={property} handleClose={closeModal} /> : <></>}
-          <div>
-            <Mapa properties={properties} />
-          </div>
-          <Container>
+          <Container >
+            {properties?(<Mapa properties={properties}/>):<></>}
+          </Container>
+          <Container className="my-2">
             {properties ? (
               <Row md={3} sm={2} xs={1}>
                 {properties.map((property) => (
@@ -46,7 +45,7 @@ const HomePage = ({ properties }) => {
               <></>
             )}
           </Container>
-        </div>
+        
       </Container>
     </div>
   );

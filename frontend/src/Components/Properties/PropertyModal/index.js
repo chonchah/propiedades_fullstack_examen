@@ -1,23 +1,55 @@
-import React, { useEffect } from "react"
+import React from "react"
 import { useState } from "react"
-import { Button, Modal, Tabs, Tab, Badge, Card, Row, Col, Carousel, CarouselItem } from "react-bootstrap"
-
-
+import { Button, Modal, Badge, Card, Carousel, CarouselItem } from "react-bootstrap"
+import Icon from '@mdi/react'
+import { mdiBed, mdiToilet, mdiRulerSquare, mdiParking, mdiHomeCity } from '@mdi/js'
 const PropertyModal = ({ property, handleClose }) => {
     const [show] = useState(property ? true : false)
 
     return (
         <>
-            <Modal fullscreen={true} show={show} onHide={handleClose}>
+            <Modal  show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{property.name}</Modal.Title>
+                    <Modal.Title>{property.name} <Badge bg="primary">{property.operation} ${property.price}</Badge></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>
                     <Card>
                         <Card.Body>
                             <Card.Title>Descripción</Card.Title>
-                            <Card.Text>{property.description}</Card.Text>
+                            <Card.Text>{property.description}  </Card.Text>
+                            <Card.Text>
+                                <Badge className="mx-1" bg="light" text="dark">
+                                    <span >
+                                        <Icon className="m-2" title="User Profile" size={1} path={mdiBed}></Icon>
+                                        {property.bedrooms} recámaras
+                                    </span>
+                                </Badge>
+                                <Badge className="mx-1" bg="light" text="dark">
+                                    <span >
+                                        <Icon className="m-2" title="User Profile" size={1} path={mdiToilet}></Icon>
+                                        {property.num_bathrooms} baños
+                                    </span>
+                                </Badge>
+                                <Badge className="mx-1" bg="light" text="dark">
+                                    <span >
+                                        <Icon className="m-2" title="User Profile" size={1} path={mdiRulerSquare}></Icon>
+                                        {property.m2_construction} m²
+                                    </span>
+                                </Badge>
+                                <Badge className="mx-1" bg="light" text="dark">
+                                    <span >
+                                        <Icon className="m-2" title="User Profile" size={1} path={mdiParking}></Icon>
+                                        {property.parking} cochera(s)
+                                    </span>
+                                </Badge>
+                                <Badge className="mx-1" bg="light" text="dark">
+                                    <span >
+                                        <Icon className="m-2" title="User Profile" size={1} path={mdiHomeCity}></Icon>
+                                        {property.age} años
+                                    </span>
+                                </Badge>
+                            </Card.Text>
                         </Card.Body>
                         <Card.Body>
                             <Card.Title>Amenidades</Card.Title>
@@ -25,12 +57,10 @@ const PropertyModal = ({ property, handleClose }) => {
                                 {
                                     property.amenities.map(amenity => {
                                         return (
-                                            <span sm={1} key={amenity.id} className="ml-2">
-                                                <Badge pill className="mx-2" bg="secondary" text="light">
-                                                    {amenity.name}
-                                                </Badge>
-                                            </span>
-                                        )
+                                            <Badge key={amenity.id} className="mx-1" bg="dark" text="" >
+                                                <span style={{fontSize:'0.85rem'}}>{amenity.name}</span>
+                                            </Badge>
+                                           )
                                     })
                                 }
                             </Card.Text>
@@ -53,9 +83,12 @@ const PropertyModal = ({ property, handleClose }) => {
 
                         <Card.Body>
                             <Card.Title>Ubicación</Card.Title>
-                            <Card.Text>Calle: {property.street} C.P. {property.cp}, {property.city}, {property.state} </Card.Text>
+                            
+                            <Card.Text>Calle {property.street} Col. {property.neighborhood} C.P. {property.cp}, {property.city}, {property.state} </Card.Text>
+                            <Card.Link target="_blank" href={`https://www.google.com/maps/search/?api=1&query=${property.latitude},${property.longitude}`}>Ver mapa</Card.Link>
 
                         </Card.Body>
+                        
                     </Card>
                 </Modal.Body>
 

@@ -8,7 +8,7 @@ import Marker from './Marker';
 import GoogleMap from './GoogleMap';
 
 // consts
-const LOS_ANGELES_CENTER = [34.0522, -118.2437];
+const CDMX = [19.42, -99.12];
 
 // Return map bounds based on list of places
 const getMapBounds = (map, maps, places) => {
@@ -16,8 +16,8 @@ const getMapBounds = (map, maps, places) => {
 
     places.forEach((place) => {
         bounds.extend(new maps.LatLng(
-            place.geometry.location.lat,
-            place.geometry.location.lng,
+            place.latitude,
+            place.longitude,
         ));
     });
     return bounds;
@@ -51,21 +51,23 @@ class Mapa extends Component {
         };
     }
 
-
+    
 
     render() {
         const { places } = this.state;
+        console.log("rendering", places)
         return (
-            <>
-                {!(places.length) && (
+            <div style={{ height: '50vh', width: '100%' }}>
+                { (
                     <GoogleMap
-                        defaultZoom={10}
-                        defaultCenter={LOS_ANGELES_CENTER}
+                        _defaultZoom={13}
+                        defaultCenter={CDMX}
                         yesIWantToUseGoogleMapApiInternals
                         onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps, places)}
                     >
                         {places.map((property) => (
                             <Marker
+                                
                                 key={property.id}
                                 text={property.name}
                                 lat={property.latitude}
@@ -74,7 +76,7 @@ class Mapa extends Component {
                         ))}
                     </GoogleMap>
                 )}
-            </>
+            </div>
         );
     }
 }

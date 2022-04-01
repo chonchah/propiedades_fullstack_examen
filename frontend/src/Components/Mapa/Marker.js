@@ -1,18 +1,18 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import styled from 'styled-components';
+import { Card } from 'react-bootstrap';
 
 const Wrapper = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 18px;
-  height: 18px;
-  background-color: #000;
+  transform: translate(-30px, -30px) !important;
+  width: 32px;
+  height: 32px;
+  background-color: #ff0000;
   border: 2px solid #fff;
   border-radius: 100%;
   user-select: none;
-  transform: translate(-50%, -50%);
+  
   cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
   &:hover {
     z-index: 1;
@@ -20,19 +20,14 @@ const Wrapper = styled.div`
 `;
 
 const Marker = ({ text, onClick }) => (
-  <Wrapper
-    alt={text}
-    onClick={onClick}
-  />
+  <Card style={{'width':'300px'}}>
+    <Card.Body>
+      <Wrapper alt={text} onClick={onClick}></Wrapper>
+      <Card.Title>{text}</Card.Title>
+    </Card.Body>
+  </Card>
 );
 
-Marker.defaultProps = {
-  onClick: null,
-};
 
-Marker.propTypes = {
-  onClick: PropTypes.func,
-  text: PropTypes.string.isRequired,
-};
 
 export default Marker;
