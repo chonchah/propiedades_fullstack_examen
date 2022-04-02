@@ -2,11 +2,11 @@ import React from "react";
 import { Card, Form, Row, Col, Container, FloatingLabel, Button, Image } from "react-bootstrap";
 import NavigationBar from "../../Navbar";
 import { useEffect } from "react";
-import { getPexelsImages } from "../../../redux/actionCreators";
+import { getPexelsImages, getAmenities } from "../../../redux/actionCreators";
 import store from "../../../redux/store";
 import { connect } from "react-redux";
 import { useState } from "react";
-const PropertyForm = (images)=>{
+const PropertyForm = ({amenities, images})=>{
     const [picturesSelected, setPictures] = useState({})
     const [validated,setValidity] = useState(false)
     const handleSubmit=(e)=>{
@@ -25,7 +25,8 @@ const PropertyForm = (images)=>{
         console.log(picturesSelected)
     }
     useEffect(()=>{
-        store.dispatch(getPexelsImages())
+        store.dispatch(getAmenities())
+        //store.dispatch(getPexelsImages())
     },[])
     return (
         <>
@@ -35,6 +36,7 @@ const PropertyForm = (images)=>{
                 <Card>
                     <Card.Body>
                         <Card.Title>Nueva propiedad</Card.Title>
+                        <Card.Text>{JSON.stringify(amenities)}</Card.Text>
                         
                         <Form validated={validated} onSubmit={handleSubmit}>
                             <Row className="mb-2">
@@ -134,7 +136,7 @@ const PropertyForm = (images)=>{
                                 
                             </Row>
                             <Row className="mb-2">
-                                    {images.photos? images.photos.map(photo=>(
+                                    {images? images.photos.map(photo=>(
                                         <Form.Group key={photo.id} as={Col} sm={12} md={4} lg={3} >
                                             <Form.Check type="checkbox" id={photo.id}
                                                 onChange={()=>{handleImageCheck(photo)}}
@@ -152,5 +154,5 @@ const PropertyForm = (images)=>{
         </>
     )
 }
-const mapStateToProps = (state) => ({...state.propertyReducer.images})
+const mapStateToProps = (state) => ({images:state.propertyReducer.images,amenities: state.propertyReducer.amenities})
 export default connect(mapStateToProps,{})(PropertyForm)

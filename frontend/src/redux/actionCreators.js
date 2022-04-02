@@ -1,7 +1,8 @@
 import Axios from "axios";
 import {
   GET_ALL_PROPERTIES,
-  GET_ALL_IMAGES
+  GET_ALL_IMAGES,
+  GET_ALL_AMENITIES
 } from "./actions";
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -18,7 +19,15 @@ export const getPexelsImages=()=>dispatch=>{
         })
     })
 }
-
+export const getAmenities=()=>dispatch=>{
+    
+    Axios.get(`${API_URL}/amenities`).then(resp => {
+        return dispatch({
+            type: GET_ALL_AMENITIES,
+            amenities: resp.data
+        })
+    })
+}
 export const getAllProperties = () => dispatch => {
     Axios.get(`${API_URL}/properties`).then(resp => {
         return dispatch({
