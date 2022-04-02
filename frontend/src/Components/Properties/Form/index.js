@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import { useState } from "react";
 const PropertyForm = ({amenities, images})=>{
     const [picturesSelected, setPictures] = useState({})
+    const [amenitySelected, setAmenities] = useState({})
     const [validated,setValidity] = useState(false)
     const handleSubmit=(e)=>{
         let form = e.currentTarget
@@ -24,6 +25,17 @@ const PropertyForm = ({amenities, images})=>{
         setPictures(picturesSelected)
         console.log(picturesSelected)
     }
+
+    const handleAmenityCheck=(amenity)=>{
+        if (amenitySelected[amenity.id]===undefined)
+        amenitySelected[amenity.id]=amenity
+        else  delete(amenitySelected[amenity.id])
+        setAmenities(amenitySelected)
+        console.log(amenitySelected)
+    }
+
+    
+    
     useEffect(()=>{
         store.dispatch(getAmenities())
         //store.dispatch(getPexelsImages())
@@ -36,7 +48,7 @@ const PropertyForm = ({amenities, images})=>{
                 <Card>
                     <Card.Body>
                         <Card.Title>Nueva propiedad</Card.Title>
-                        <Card.Text>{JSON.stringify(amenities)}</Card.Text>
+                        
                         
                         <Form validated={validated} onSubmit={handleSubmit}>
                             <Row className="mb-2">
@@ -135,6 +147,18 @@ const PropertyForm = ({amenities, images})=>{
                                 </Form.Group>
                                 
                             </Row>
+                            { 
+                                <Row className="mt-2 mb-4">
+                                    {   amenities?
+                                        amenities.map(amenity=>
+                                            <Form.Group key={amenity.id} as={Col} xs={12} sm={6} md={3} >
+                                                <Form.Check onChange={()=>handleAmenityCheck(amenity)} type="checkbox" id={amenity.id} label={amenity.name} />
+                                            </Form.Group>
+                                            ):
+                                        <></>
+                                    }
+                                </Row>
+                            }
                             <Row className="mb-2">
                                     {images? images.photos.map(photo=>(
                                         <Form.Group key={photo.id} as={Col} sm={12} md={4} lg={3} >
