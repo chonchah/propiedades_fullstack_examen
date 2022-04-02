@@ -15,6 +15,10 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+// Rutas nuevas
 Route::get('amenities', 'App\Http\Controllers\AmenityController@index');
+Route::post('property', 'App\Http\Controllers\PropertyController@store');
+
+//Rutas originales
 Route::get('properties', 'App\Http\Controllers\PropertyController@index');
 Route::get('properties/{property}', 'App\Http\Controllers\PropertyController@show');
