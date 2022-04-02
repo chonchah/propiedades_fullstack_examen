@@ -120,7 +120,7 @@ const PropertyForm = ({amenities, images})=>{
 
     const handleAmenityCheck=(amenity)=>{
         if (amenitiesSelected[amenity.id]===undefined)
-        amenitiesSelected[amenity.id]=amenity
+        amenitiesSelected[amenity.id]=true
         else  delete(amenitiesSelected[amenity.id])
         setAmenities(amenitiesSelected)
         console.log(amenitiesSelected)
@@ -184,6 +184,7 @@ const PropertyForm = ({amenities, images})=>{
                                         <datalist id="operations-list">
                                             <option value="RENT">En renta</option>
                                             <option value="SALE">En venta</option>
+                                            <option value="TRANSFER">Traspaso</option>
                                         </datalist>
                                     </FloatingLabel>
                                 </Form.Group>
@@ -191,8 +192,11 @@ const PropertyForm = ({amenities, images})=>{
                                     <FloatingLabel  label="Tipo de propiedad" className="mb-3">
                                         <Form.Control value={property.property_type} list="property_types-list" name="property_type" required type="text"  onChange={handleInput} placeholder=""/>
                                         <datalist id="property_types-list">
-                                            <option value="APARTMENT">Apartamento</option>
+                                            <option value="APARTAMENT">Apartamento</option>
                                             <option value="HOUSE">Casa</option>
+                                            <option value="TERRAIN">Terreno</option>
+                                            <option value="OFFICE">Oficina</option>
+                                            <option value="LOCAL">Local</option>
                                         </datalist>
                                     </FloatingLabel>
                                 </Form.Group>

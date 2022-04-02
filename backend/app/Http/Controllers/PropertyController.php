@@ -26,7 +26,23 @@ class PropertyController extends Controller
     }
     public function store(Request $R)
     {
-        sleep(2);
-        return $R->all();
+        $property = new Property($R->property);
+        $property->public_key = uniqid();
+        $property->user = 1;
+        $property->save();
+        $amenities = $R->amenities;
+        $images = $R->images;
+        foreach ($amenities as $id => $check) {
+            $property->property_amenities()->create(['amenity_id' => $id]);
+        }
+        $order = 0;
+        foreach ($images as $id => $src) {
+            $property->images()->create([
+                'order' => $order++,
+                'path' => $src
+            ]);
+        }
+        $property->push();
+        return $property;
     }
 }
