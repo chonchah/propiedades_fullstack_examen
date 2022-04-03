@@ -9,7 +9,7 @@ const Wrapper = styled.main`
 `;
 
 const GoogleMap = ({ children, ...props }) => {
-    console.log(props)
+    
     return (
         <Wrapper>
             <GoogleMapReact

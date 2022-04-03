@@ -45,7 +45,7 @@ const apiIsLoaded = (map, maps, places) => {
 class Mapa extends Component {
     constructor(props) {
         super(props);
-        console.log(props)
+        
         this.state = {
             places: props.properties ? props.properties : [],
         };
@@ -55,7 +55,7 @@ class Mapa extends Component {
 
     render() {
         const { places } = this.state;
-        console.log("rendering", places)
+        
         return (
             <div style={{ height: '50vh', width: '100%' }}>
                 { (
