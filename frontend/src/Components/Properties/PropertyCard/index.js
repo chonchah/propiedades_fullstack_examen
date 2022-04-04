@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Carousel, CarouselItem } from "react-bootstrap";
+import { Card, Carousel, CarouselItem, Badge } from "react-bootstrap";
 
 const PropertyCard = ({property, verInfo})=>{
     const handleClick=()=>{verInfo(property)}
@@ -19,6 +19,7 @@ const PropertyCard = ({property, verInfo})=>{
             </Card.Body>
             <Card.Body>
                 <Card.Title>{property.name}</Card.Title>
+                <Card.Text><Badge bg="secondary">{property.operation} ${property.price}</Badge></Card.Text>
                 <Card.Text>{property.description}</Card.Text>
                 <Card.Text>
                     {property.amenities?property.amenities.map(amenity=>{

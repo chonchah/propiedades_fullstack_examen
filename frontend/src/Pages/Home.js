@@ -14,7 +14,11 @@ const HomePage = ({ properties, amenities }) => {
   const [property, setProperty] = useState(undefined)
   const [filtro, setFiltro] = useState({amenity:undefined, price:0})
   const [properties_filtered, setPropertiesFiltered] = useState([])
+  const [showAll, setShowAll] = useState(false)
 
+  const handleShowAll = (e)=>{
+    setShowAll(e.target.checked)
+  }
   const handleFiltro = (e)=>{
     let {name, value} = e.target
     setFiltro({...filtro, [name]:value})
@@ -62,6 +66,7 @@ const HomePage = ({ properties, amenities }) => {
                         type="switch"
                         id="custom-switch"
                         label="Mostrar todos"
+                        onChange={handleShowAll}
                       />
                     </Form.Group>
                     <Form.Group as={Col} sm={12}>
@@ -87,6 +92,22 @@ const HomePage = ({ properties, amenities }) => {
               </Card.Body>
             </Card>
           </Container>
+          {
+            showAll?
+            <Container className="my-2">
+            {properties ? (
+              <Row md={3} sm={2} xs={1}>
+                {properties.map((property) => (
+                  <Col key={property.id}>
+                    <PropertyCard property={property} verInfo={showModal} />
+                  </Col>
+                ))}
+              </Row>
+            ) : (
+              <></>
+            )}
+          </Container>
+          :
           <Container className="my-2">
             {properties_filtered ? (
               <Row md={3} sm={2} xs={1}>
@@ -100,6 +121,10 @@ const HomePage = ({ properties, amenities }) => {
               <></>
             )}
           </Container>
+          }
+          
+          
+
         
       </Container>
     </div>
