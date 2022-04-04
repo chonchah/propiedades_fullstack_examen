@@ -17,7 +17,7 @@ class NavigationBar extends PureComponent {
     return (
       <Navbar collapseOnSelect sticky="top" expand="sm" bg="dark" variant="dark">
         <Container>
-          <Brand><NavLink as={Link} to="/" >Habi</NavLink> </Brand>
+          <Brand><NavLink  href="/" >Habi</NavLink> </Brand>
           <Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="me-auto">

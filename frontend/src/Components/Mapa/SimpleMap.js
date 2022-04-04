@@ -8,7 +8,7 @@ import Marker from './Marker';
 import GoogleMap from './GoogleMap';
 
 // consts
-const CDMX = [19.42, -99.12];
+const CDMX = [	19.419444,-99.145556];
 
 // Return map bounds based on list of places
 const getMapBounds = (map, maps, places) => {
@@ -57,7 +57,7 @@ class Mapa extends Component {
         const { places } = this.state;
         
         return (
-            <div style={{ height: '50vh', width: '100%' }}>
+            <div style={{ height: '40vh', width: '100%' }}>
                 { (
                     <GoogleMap
                         _defaultZoom={13}

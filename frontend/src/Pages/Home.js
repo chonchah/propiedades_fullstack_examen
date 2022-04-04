@@ -9,12 +9,14 @@ import PropertyModal from "../Components/Properties/PropertyModal";
 import { useState } from "react";
 import Mapa from "../Components/Mapa/SimpleMap";
 
+const FormatCurrency = new Intl.NumberFormat('es-MX',{style:"currency", currency:"MXN"}).format 
+
 const HomePage = ({ properties, amenities }) => {
 
   const [property, setProperty] = useState(undefined)
   const [filtro, setFiltro] = useState({amenity:undefined, price:0})
   const [properties_filtered, setPropertiesFiltered] = useState([])
-  const [showAll, setShowAll] = useState(false)
+  const [showAll, setShowAll] = useState(true)
 
   const handleShowAll = (e)=>{
     setShowAll(e.target.checked)
@@ -66,12 +68,13 @@ const HomePage = ({ properties, amenities }) => {
                         type="switch"
                         id="custom-switch"
                         label="Mostrar todos"
+                        checked={showAll}
                         onChange={handleShowAll}
                       />
                     </Form.Group>
                     <Form.Group as={Col} sm={12}>
-                      <Form.Label>Precio ${filtro.price}</Form.Label>
-                      <Form.Range name="price" onChange={handleFiltro} value={filtro.price}  min={0} max={1e5} step={500}   />
+                      <Form.Label>Precio {FormatCurrency(filtro.price)}</Form.Label>
+                      <Form.Range disabled={showAll} name="price" onChange={handleFiltro} value={filtro.price}  min={0} max={1e7} step={500}   />
                     </Form.Group>
                     
                   
@@ -81,7 +84,7 @@ const HomePage = ({ properties, amenities }) => {
                       {   amenities?
                           amenities.map(amenity=>
                               <Form.Group key={amenity.id} as={Col} xs={12} sm={6} md={3} controlId="amenities" >
-                                  <Form.Check name="amenity" value={amenity.name} onChange={handleFiltro}  type="radio" id={amenity.id} label={amenity.name} />
+                                  <Form.Check  disabled={showAll} name="amenity" value={amenity.name} onChange={handleFiltro}  type="radio" id={amenity.id} label={amenity.name} />
                               </Form.Group>
                               ):
                           <></>

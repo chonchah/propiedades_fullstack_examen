@@ -1,6 +1,6 @@
 import React from "react";
 import { Card, Carousel, CarouselItem, Badge } from "react-bootstrap";
-
+const FormatCurrency = new Intl.NumberFormat('es-MX',{style:"currency", currency:"MXN"}).format 
 const PropertyCard = ({property, verInfo})=>{
     const handleClick=()=>{verInfo(property)}
     return (
@@ -19,7 +19,7 @@ const PropertyCard = ({property, verInfo})=>{
             </Card.Body>
             <Card.Body>
                 <Card.Title>{property.name}</Card.Title>
-                <Card.Text><Badge bg="secondary">{property.operation} ${property.price}</Badge></Card.Text>
+                <Card.Text><Badge bg="secondary">{property.operation} {FormatCurrency(property.price)}</Badge></Card.Text>
                 <Card.Text>{property.description}</Card.Text>
                 <Card.Text>
                     {property.amenities?property.amenities.map(amenity=>{

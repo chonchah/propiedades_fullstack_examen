@@ -3,6 +3,9 @@ import { useState } from "react"
 import { Button, Modal, Badge, Card, Carousel, CarouselItem } from "react-bootstrap"
 import Icon from '@mdi/react'
 import { mdiBed, mdiToilet, mdiRulerSquare, mdiParking, mdiHomeCity } from '@mdi/js'
+
+const FormatCurrency = new Intl.NumberFormat('es-MX',{style:"currency", currency:"MXN"}).format 
+
 const PropertyModal = ({ property, handleClose }) => {
     const [show] = useState(property ? true : false)
 
@@ -10,7 +13,7 @@ const PropertyModal = ({ property, handleClose }) => {
         <>
             <Modal  show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>{property.name} <Badge bg="primary">{property.operation} ${property.price}</Badge></Modal.Title>
+                    <Modal.Title>{property.name} <Badge bg="primary">{property.operation} {FormatCurrency(property.price)}</Badge></Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>

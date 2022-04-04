@@ -21,10 +21,10 @@ const newProperty = {
     name: "",
     neighborhood: "",
     num_bathrooms: 0,
-    operation: "",
+    operation: "RENT",
     parking: 0,
     price: 0,
-    property_type: "",
+    property_type: "HOUSE",
     state: "",
     street: "",
     
@@ -180,24 +180,24 @@ const PropertyForm = ({amenities, images})=>{
                                 </Form.Group>
                                 <Form.Group as={Col} sm={6} controlId="operation">
                                     <FloatingLabel  label="Operacion" className="mb-3">
-                                        <Form.Control value={property.operation} list="operations-list" name="operation" required type="text" onChange={handleInput} placeholder=""/>
-                                        <datalist id="operations-list">
+                                        <Form.Select  defaultValue={property.operation}  name="operation" required type="text" onChange={handleInput}>
                                             <option value="RENT">En renta</option>
                                             <option value="SALE">En venta</option>
                                             <option value="TRANSFER">Traspaso</option>
-                                        </datalist>
+                                        </Form.Select>
+                                        
                                     </FloatingLabel>
                                 </Form.Group>
                                 <Form.Group as={Col} sm={6} controlId="property_type">
                                     <FloatingLabel  label="Tipo de propiedad" className="mb-3">
-                                        <Form.Control value={property.property_type} list="property_types-list" name="property_type" required type="text"  onChange={handleInput} placeholder=""/>
-                                        <datalist id="property_types-list">
+                                        
+                                        <Form.Select defaultValue={property.property_type} name="property_type" required onChange={handleInput}>
                                             <option value="APARTAMENT">Apartamento</option>
                                             <option value="HOUSE">Casa</option>
                                             <option value="TERRAIN">Terreno</option>
                                             <option value="OFFICE">Oficina</option>
                                             <option value="LOCAL">Local</option>
-                                        </datalist>
+                                        </Form.Select>
                                     </FloatingLabel>
                                 </Form.Group>
                                 <Form.Group as={Col} sm={6} controlId="latitude">

@@ -38,7 +38,7 @@ class Property extends Model
     }
     public function amenities()
     {
-        return $this->hasManyThrough(Amenities::class, PropertyAmenities::class, 'property_id', 'id', 'id', 'amenity_id');
+        return $this->hasManyThrough(Amenity::class, PropertyAmenities::class, 'property_id', 'id', 'id', 'amenity_id');
     }
     public function images()
     {
